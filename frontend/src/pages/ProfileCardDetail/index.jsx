@@ -86,6 +86,8 @@ const ProfileCardDetail = (props) => {
     fetchProfileCardDetail(profileCardId);
   }, [profileCardId]);
 
+  if (!profileDetail) return null;
+
   return (
     <div className="profile-card-detail">
       <div className="header">
