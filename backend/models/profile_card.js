@@ -6,8 +6,33 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING(255),
       allowNull: false,
+    },
+    nickname: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    phone_number:{
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    email:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    birth:{
+      type: DataTypes.DATEONLY,
+      allowNull:true,
+    },
+    address:{
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    gender:{
+      type: DataTypes.STRING(255),
+      allowNull : false,
+
     },
     // define columns...
   },{
@@ -19,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   model.associate = (models) => {
-    // define associate if necessary...
+    model.hasMany(models.career, {foreignKey: 'user_id', sourceKey: 'id'});
   };
 
   return model;
