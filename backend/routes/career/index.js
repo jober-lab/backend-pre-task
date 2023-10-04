@@ -8,9 +8,9 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 //캐리어 조회
-router.get('/:id', asyncWrapper(async (req,res) => {
+router.get('/:id', asyncWrapper(async (req, res) => {
 
-    let userCareer = await Career.findOne(
+    let userCareer = await Career.findAll(
         {where: {user_id: req.params.id}}
     );
 
@@ -20,11 +20,6 @@ router.get('/:id', asyncWrapper(async (req,res) => {
 }))
 
 
-//캐리어 추가
-router.put('/:user_id/add', asyncWrapper(async (req,res) => {
-    let newCareer = await Career.create(
 
-    )
-}))
 
 module.exports = router;
