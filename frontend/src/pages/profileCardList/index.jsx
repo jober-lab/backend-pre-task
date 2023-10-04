@@ -62,15 +62,15 @@ const ProfileCardList = () => {
   const fetchProfileList = useCallback(async (
     targetPage, sort = ['name', 'asc'],
   ) => {
-    // TODO: Change your api
     const response = await request({
       method: 'GET',
       url: '/api/profile-card',
       params: {
-        current: targetPage || paginationInfo.current,
-        columns: columnDefs.map(({ field }) => field),
+        pageNum : targetPage || paginationInfo.current,
+        // columns: columnDefs.map(({ field }) => field),
         pageSize: paginationInfo.pageSize,
-        sort: sort || orderInfo,
+        orderBy : orderInfo[1].toString().toUpperCase(),
+        orderByStandard : sort[0].toString()
       },
     });
     if (!response || !response.list) return;
@@ -85,7 +85,6 @@ const ProfileCardList = () => {
   }, listFetchDependencies);
 
   const fetchAvailableColumns = useCallback(async () => {
-    // TODO: Change your api
     const response = await request({
       method: 'GET',
       url: '/api/profile-card',
