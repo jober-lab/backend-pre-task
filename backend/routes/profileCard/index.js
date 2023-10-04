@@ -72,6 +72,7 @@ router.put("/add", asyncWrapper(async (req, res) => {
 
 }))
 
+//프로필 수정
 router.post("/modify", asyncWrapper(async (req, res) => {
 
     let user = await ProfileCard.findOne({
