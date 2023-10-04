@@ -42,6 +42,21 @@ router.get('/', asyncWrapper(async (req, res) => {
 
 }));
 
+//상세페이지 조회 | 유저 정보 + 캐리어 정보
+router.get('/:uid', asyncWrapper(async (req, res) => {
+
+    const user_detail = await ProfileCard.findOne({
+        id: Number(req.params.uid),
+        include: [{
+            model: Career
+        }]
+    });
+
+    res.send(user_detail);
+
+}));
+
+
 
 //프로필 삭제
 router.delete("/delete", asyncWrapper(async (req, res) => {
