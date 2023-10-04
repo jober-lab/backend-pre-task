@@ -34,8 +34,8 @@ router.get('/', asyncWrapper(async (req, res) => {
         })
         .catch(err => {
             return res.status(400).json({
-                ok : false,
-                message:("failed"),
+                ok: false,
+                message: ("failed"),
                 content: err
             })
         });
@@ -72,9 +72,41 @@ router.put("/add", asyncWrapper(async (req, res) => {
 
 }))
 
+router.post("/modify", asyncWrapper(async (req, res) => {
+
+    let user = await ProfileCard.findOne({
+        where: {
+            id: Number(req.body.user_id)
+        }
+    }).then(result => {
+        try {
+            result.update(
+                {
+                    nickname: req.body.nickname,
+                    email: req.body.email,
+                    birth: req.body.date,
+                    phone_number: req.body.phone,
+                    address: req.body.address,
+                    gender: req.body.gender
+                }
+            )
+        } catch (e) {
+            res.json({
+                ok: false,
+                code: 200,
+                content: e
+            })
+        }
+    })
+
+    res.json({
+        ok: true,
+        message: "post completed successfully"
+    })
+}))
 
 //프로필 삭제
-router.delete("/delete", asyncWrapper(async (req, res) => {
+router.patch("/delete", asyncWrapper(async (req, res) => {
 
     let user = await ProfileCard.findOne({
         where: {
@@ -85,7 +117,7 @@ router.delete("/delete", asyncWrapper(async (req, res) => {
         if (result == null) {
             res.json({
                 ok: false,
-                code: 400,
+                code: 200,
                 content: "already deleted"
             })
         } else {
