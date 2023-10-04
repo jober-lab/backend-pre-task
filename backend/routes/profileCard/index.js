@@ -56,6 +56,21 @@ router.get('/:uid', asyncWrapper(async (req, res) => {
 
 }));
 
+//새로운 연락처 개별 추가
+router.put("/add", asyncWrapper(async (req, res) => {
+
+    let user = await ProfileCard.findOrCreate({
+        where: {name: req.body.name}
+    }).then(() => {
+        ProfileCard.findAll();
+    })
+
+    res.json({
+        ok: true,
+        content: user
+    })
+
+}))
 
 
 //프로필 삭제
