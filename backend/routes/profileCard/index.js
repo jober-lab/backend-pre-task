@@ -8,8 +8,24 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 
-//기본 조회
+
+
+
+//페이지네이션 조회
 router.get('/', asyncWrapper(async (req, res) => {
+
+    // console.log(req.body.isEmpty());
+    console.log("query = ", req.query);
+
+    if(req.query.pageSize === undefined &&
+        req.query.pageNum === undefined &&
+        req.query.orderBy === undefined &&
+        req.query.orderByStandard === undefined) {
+        const list = await ProfileCard.findAll();
+
+        res.send(list);
+        return;
+    }
 
     let pageNum = req.query.pageNum; // 요청 페이지 넘버
     let offset = 0;
@@ -22,7 +38,7 @@ router.get('/', asyncWrapper(async (req, res) => {
 
     const list = await ProfileCard.findAll({
         offset: offset,
-        limit: 10,
+        limit: Number(req.query.pageSize),
         order: [[orderByStandard, orderBy]]
     })
         .then(async result => {
@@ -41,6 +57,17 @@ router.get('/', asyncWrapper(async (req, res) => {
         });
 
 }));
+//
+// router.get('/', asyncWrapper(async (req, res) => {
+//
+//
+//     let list = await ProfileCard.findAll();
+//
+//
+//     return res.json(
+//         list
+//     );
+// }));
 
 //상세페이지 조회 | 유저 정보 + 캐리어 정보
 router.get('/:uid', asyncWrapper(async (req, res) => {
