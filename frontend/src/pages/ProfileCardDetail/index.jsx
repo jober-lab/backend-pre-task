@@ -21,10 +21,9 @@ const ProfileCardDetail = (props) => {
   const history = useHistory();
 
   const fetchProfileCardDetail = useCallback(async (fetchTargetId) => {
-    // TODO: Change your api
     const response = await request({
       method: 'GET',
-      url: '/api/??',
+      url: '/api/profile-card',
     });
     if (!response || !response.profileCardDetail) return;
 
@@ -36,11 +35,15 @@ const ProfileCardDetail = (props) => {
   }, [profileCardId]);
 
   const deleteProfileCard = useCallback(async () => {
-    // TODO: Change your api
+
     const response = await request({
       method: 'POST',
-      url: '/api/??',
+      url: '/api/profile-card/delete',
+      body : {
+        user_id : profileCardId
+      }
     });
+
     if (!response) return;
 
     history.push('/');
@@ -76,10 +79,9 @@ const ProfileCardDetail = (props) => {
   }, [profileDetail]);
 
   const onSaveValue = useCallback(async (newValue, parentDatKey, itemIndex) => {
-    // TODO: Change your api
     const response = await request({
       method: 'POST',
-      url: '/api/??',
+      url: '/api/',
     });
     if (!response) return;
 
