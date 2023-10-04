@@ -34,7 +34,15 @@ const DetailPageLink = React.memo((props) => {
 const ProfileCardList = () => {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: '이름', field: 'name', cellClass: 'default-cell', cellRenderer: DetailPageLink }
+    { headerName: '이름', field: 'name', cellClass: 'default-cell', cellRenderer: DetailPageLink },
+    { headerName: '닉네임', field: 'nickname', cellClass: '', cellRenderer: DetailPageLink, },
+    { headerName: '전화번호', field: 'phone_number', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '이메일', field: 'email', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '생일', field: 'birth', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '주소', field: 'address', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '성별', field: 'gender', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '입사일', field: 'join_date', cellClass: '', cellRenderer: DetailPageLink },
+    { headerName: '퇴사일', field: 'quit_date', cellClass: '', cellRenderer: DetailPageLink }
   ]);
   const [paginationInfo, setPaginationInfo] = useState({
     current: 1,
@@ -80,7 +88,7 @@ const ProfileCardList = () => {
     // TODO: Change your api
     const response = await request({
       method: 'GET',
-      url: '/api/??',
+      url: '/api/profile-card',
     });
     if (!response || !response.columns) return;
 
@@ -88,6 +96,13 @@ const ProfileCardList = () => {
       {
         headerName: '이름',
         field: 'name',
+        cellClass: 'default-cell',
+        comparator: () => 0,
+        cellRenderer: DetailPageLink,
+      },
+      {
+        headerName: '닉네임',
+        field: 'nickname',
         cellClass: 'default-cell',
         comparator: () => 0,
         cellRenderer: DetailPageLink,
