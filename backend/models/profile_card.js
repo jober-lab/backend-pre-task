@@ -7,15 +7,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     nickname: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     phone_number:{
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
     email:{
       type: DataTypes.STRING(255),
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     gender:{
       type: DataTypes.STRING(255),
-      allowNull : false,
+      allowNull : true,
 
     },
     // define columns...

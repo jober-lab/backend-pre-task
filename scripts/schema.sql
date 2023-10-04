@@ -3,11 +3,10 @@ CREATE DATABASE jober_pre_task CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE jober_pre_task;
 
 CREATE TABLE profile_card (
-
     id int auto_increment primary key,
     name varchar(255) not null,
-    nickname varchar(255) not null,
-    phone_number varchar(255) not null,
+    nickname varchar(255),
+    phone_number varchar(255),
     email varchar(255),
     birth date,
     address varchar(255),
