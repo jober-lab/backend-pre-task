@@ -16,6 +16,15 @@
   - /scripts 하위의 sql 파일이 업데이트 되면 도커 볼륨을 제거 후 다시 마운팅 해야 하므로 docker compose down 으로 컨테이너를 내리고 다시 실행시켜 주세요.  
   - `docker compose -p backend-pre-task down`
 
+
+
+
+# 과제 진행 사항
+-----
+
+## 데이터베이스 ERD
+<img width="1009" alt="image" src="https://github.com/realslimtaek/backend-pre-task/assets/89964264/a5fe3708-fba8-4096-a232-2a582abdbd13">
+
   
 - [x] 연락처 목록의 순서를 원하는 정보 항목을 기준으로 정렬할 수 있다.
   1. 정렬은 한 개 칼럼에만 적용할 수 있다.
